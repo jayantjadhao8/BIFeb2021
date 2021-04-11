@@ -1,27 +1,21 @@
-import { user } from '../../Models/user.js'
-import {User} from '../models/user.js'
+import { users } from '../../Models/user.js'
 
-let users=[] //this act as a user table(database)..later will replace this with DB call
+let users=[] //this will act as a user table(database)..later will replace this with DB call
 
 export const getUsers=(req,res)=>{
     console.log("In function call getUser.. I this /users endpoint got hit. ")
     res.send(users)
-    user.find(
-        .then(
-            (result)=>{
-                res.send(result)
-            }
-        )
-    )
+   
 }
 
-export const getUsers=(req,res)=>{
+export const createUser=(req,res)=>{
     console.log("In function call getUser.. I this /users endpoint got hit. ")
+    //users.push(req.body)
     const user = new User({
-        name: req.body.name'
-        gender: req.body.gender,
-        age: req.body.age,
-        city: req.body.city,
+        Name: req.body.name'
+        Gender: req.body.gender,
+        Age: req.body.age,
+        City: req.body.city,
     })
     user.save()
         .them(
@@ -32,8 +26,6 @@ export const getUsers=(req,res)=>{
         .catch(
             (err)=>{
                 console.log(err)
+            }
         )
-    users.push(req.body)
-    res.send("ok")
-
 }
