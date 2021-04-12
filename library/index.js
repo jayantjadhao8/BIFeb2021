@@ -1,19 +1,32 @@
 import express from "express"
 import bodyParser from "body-parser"
-import userRouter from "./routes/user.js"
-import mongoose from 'mongoose'
-ExtensionScriptApis
+//import userRouter from "./routes/users.js"
+//import mongoose from 'mongoose'
 
-const server=express();
-const PORT=8888;
-server.use(bodyParser.json());
+//mongodb+srv://Jayjadhao8:jayant1@cluster0.nl0is.mongodb.net/library?retryWrites=true&w=majority
 
-//server.get("/"(req,res)-> res.send("Welcome to my library"));
-var homepGE=(req,res)=> res.send("Welcome to my library") //handle http://localhost:8888/
+//mongoose.connect(dbURI,{useNewUrlParser:true, useUnifiedTopology:true})
+//    .then(
+//        (result) => {
+//            console.log("Connected to the Database")
+//            server.listen(PORT)
+//            console.log("Server started successfully")
+//        }
+//    )
+//    .catch(
+//        (err)=>{
+//            console.log(err)
+//        }
+//    )
 
-server.use("/user",userRouter)
+const server=express()
+const PORT=8888
+server.use(bodyParser.json())
+server.get("/"(req,res)-> res.send("Welcome to my library"))
+
+homepage=(req,res)=> res.send("Welcome to my library") //handle http://localhost:8888/
+//server.use("/user",userRouter)
 server.get("/",homepage)
 
 server.listen(PORT)
 
-mongodb+srv://Jayjadhao8:Jayjadhao1@@cluster0.nl0is.mongodb.net/library?retryWrites=true&w=majority

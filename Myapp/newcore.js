@@ -6,7 +6,7 @@ import http from "http"
 const server=http.createServer()
 
 //events
-//server.on('request', myfunc)
+server.on('request', myfunc)
 
 
 function myfunc(request, response){

@@ -1,39 +1,52 @@
-var student={
-    Name:"Gaurav",
-    Address:"Google", 
-    RollNumber: 12, 
-    isGraduated: false, 
-    details: function(){
-        console.log(this.Name)
-        console.log(this.Address)
-        console.log(this.RollNumber)
-        console.log(this.isGraduated)
-    },
-    getName: (LastName)=>{
-            return Name+" "+LastName
-    }
-   };
-// student.company="vkhhv"
-   class Student{
-       constructor(name, address, rollNumber,isGraduated){
-           this.name=name
-           this.address=address
-           this.rollNumber=rollNumber
-           this.isGraduated=isGraduated
-       }
-       details(){
-        console.log(this.name)
-        console.log(this.address)
-        console.log(this.rollNumber)
-        console.log(this.isGraduated)
-    }
-    getName(lastName){
-        return this.name+" "+lastName
-    }
-   }
+// function printVal(){
+//     console.log(arguments)
+// }
 
-   var student1= new Student("rajveer","google",12,false)
-   console.log(student1.name)
-   student1.details()
-   var fullname=student1.getName("Bighot")
-console.log(fullname)
+// printVal("Aniket",12,1222)
+
+//Wrapped inside a function, IIFE(Imedietly invoked function expression )
+// (function(exports, require, module, __filepath, __dirname){
+// exports.name="Naren"
+//  console.log(arguments)
+// console.log("hey, I got execuetd only one time")
+//return exports
+//})()
+
+// module.exports=(x)=>{
+//     if(x%2==0){
+//        console.log("it's even")
+//     }else{
+//        console.log("It's Odd")
+//     }
+// }
+
+module.exports={
+    isEven:(x)=>{
+            if(x%2==0){
+               console.log("it's even")
+            }else{
+               console.log("It's Odd")
+            }
+        },
+        en:(x)=>{
+            if(x%2==0){
+               console.log("it's even")
+            }else{
+               console.log("It's Odd")
+            }
+        },
+        notOdd:(x)=>{
+            if(x%2==0){
+               console.log("it's even")
+            }else{
+               console.log("It's Odd")
+            }
+        },
+        even:(x)=>{
+            if(x%2==0){
+               console.log("it's even")
+            }else{
+               console.log("It's Odd")
+            }
+        },
+}
