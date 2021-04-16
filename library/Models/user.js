@@ -3,21 +3,17 @@ const Schema= mongoose.Schema
 
 const userSchema = new Schema({
     name:{
-        type:String
+        type:String,
+        required:true
+    },
+    collegeName:{
+        type:String,
+        required:true
+    },
+    location:{
+        type:String,
         required:true
     }
-    Gender:{
-        type:String
-        required:true
-    }
-    Age:{
-        type:String
-        required:true
-    }
-    City:{
-        type:String
-        required:true
-    }
-}  {timestamps:true})
+}, {timestamp:true})
 
 export const User=mongoose.model('User',userSchema)

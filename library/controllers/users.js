@@ -45,9 +45,8 @@ export const createUser = (req,res)=>{
     // users.push(req.body)
     const user = new User({
         name: req.body.name,
-        gender: req.body.gender,
-        age: req.body.age,
-        city: req.body.city, 
+        collegeName: req.body.collegeName,
+        location: req.body.location, 
     })
     user.save()
         .then(
@@ -79,25 +78,8 @@ export const deleteUserById= (req,res)=>{
 }
 export const updateUserById = (req,res) => {    
     User.findByIdAndUpdate(req.params.id,{
-        age: req.body.age,
-        city: req.body.city 
+        location: req.body.location
     }) .then(
-        (result)=>{
-            res.send(result)
-        }
-    )
-    .catch(
-        (err)=>{
-            console.log(err)
-        }
-    )
-}
-
-const getUsersByAge = (req,res) => {
-    User.aggregate(
-        [{$sort:{age:1}}]
-    )
-    .then(
         (result)=>{
             res.send(result)
         }
