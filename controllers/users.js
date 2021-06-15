@@ -43,10 +43,16 @@ export const getUserByID= (req,res)=>{
 export const createUser = (req,res)=>{
     console.log("In function call createUser()..I think this '/users' endpoint got hit with post request.")
     // users.push(req.body)
+    if (req.body.name == null ||req.body.gender == null ||req.body.age == null || req.body.city == null){
+        res.status(400).send({
+            message: "all feilds are not been passed..try again"
+        })
+    }
     const user = new User({
         name: req.body.name,
-        collegeName: req.body.collegeName,
-        location: req.body.location, 
+        gender: req.body.gender,
+        age: req.body.age,
+        city: req.body.city, 
     })
     user.save()
         .then(
@@ -56,7 +62,9 @@ export const createUser = (req,res)=>{
         )
         .catch(
             (err)=>{
-                console.log(err)
+                res.status(500).send({
+                    message:err || "Internal db error"
+                })
             }
         )
 }
@@ -78,8 +86,25 @@ export const deleteUserById= (req,res)=>{
 }
 export const updateUserById = (req,res) => {    
     User.findByIdAndUpdate(req.params.id,{
-        location: req.body.location
+        age: req.body.age,
+        city: req.body.city 
     }) .then(
+        (result)=>{
+            res.send(result)
+        }
+    )
+    .catch(
+        (err)=>{
+            console.log(err)
+        }
+    )
+}
+
+const getUsersByAge = (req,res) => {
+    User.aggregate(
+        [{$sort:{age:1}}]
+    )
+    .then(
         (result)=>{
             res.send(result)
         }

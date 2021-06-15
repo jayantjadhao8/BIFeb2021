@@ -6,14 +6,18 @@ const userSchema = new Schema({
         type:String,
         required:true
     },
-    collegeName:{
+    gender:{
         type:String,
         required:true
     },
-    location:{
+    age:{
+        type:String,
+        required:true
+    },
+    city:{
         type:String,
         required:true
     }
-}, {timestamp:true})
+}, {timestamps:true})
 
 export const User=mongoose.model('User',userSchema)

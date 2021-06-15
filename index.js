@@ -1,9 +1,48 @@
 import express from "express"
 import bodyParser from "body-parser"
 import userRouter from "./routes/users.js"
+import authRouter from "./routes/auth.routes.js"
+import tutorialRouter from "./routes/tutorials.js"
 import mongoose from 'mongoose'
+import pgdb from './models/index.js';
+import cors from 'cors';
 
-const dbURI='mongodb+srv://jayant2:jayant2@cluster0.nl0is.mongodb.net/library?retryWrites=true&w=majority'
+
+var corsOptions = {
+    origin: "http://localhost:8080"
+};
+
+const Role = pgdb.roles;
+function initializeDB(){
+    Role.create({
+        id:1,
+        name:"user"
+    })
+    Role.create({
+        id:2,
+        name:"admin"
+    })
+    Role.create({
+        id:3,
+        name:"moderator"
+    })
+}
+//this will drop the table and re-sync the db
+pgdb.sequelize.sync({force:true}).then(
+    ()=>{
+        initializeDB();
+        // console.log("++++++++++++++++++")
+        // console.log(result)
+        // console.log("++++++++++++++++++")
+    }
+    ).catch(
+    (err)=>{
+        console.log("@@@@@@@@@@@@@@@@@@@@@@@")
+        console.log(err)
+        console.log("@@@@@@@@@@@@@@@@@@@@@@@")
+    }
+)
+const dbURI='mongodb+srv://rahul3:rahul3@cluster0.apqfl.mongodb.net/library?retryWrites=true&w=majority'
 
 mongoose.connect(dbURI,{useNewUrlParser:true, useUnifiedTopology:true})
     .then(
@@ -20,12 +59,27 @@ mongoose.connect(dbURI,{useNewUrlParser:true, useUnifiedTopology:true})
     )
 
 const server=express()
-const PORT=3000
+const PORT=8080
+server.use(cors(corsOptions));
+server.use((req, res, next)=>{
+    res.header(
+        "Access-Control-Allow-Headers",
+        "x-access-token",
+        "Origin",
+        "Content-Type",
+        "Accept"
+    );
+    next()
+})
+//
+//
+//parse request of content-type - application/json
 server.use(bodyParser.json())
 
 // server.get("/",(req,res)=> res.send("Welcome to my library"))
 var homepage=(req,res)=> res.send("Welcome to my library") //handle http://localhost:8888/
+server.use("/api/auth",authRouter)
 server.use("/user",userRouter)
+server.use("/tutorial", tutorialRouter)
+
 server.get("/",homepage)
-
-
