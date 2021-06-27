@@ -1,0 +1,26 @@
+header{
+    padding: 2em;
+    background-color: green;
+    margin-top: 2em;
+    text-align: center;
+    color: red;
+}
+
+.quote{
+    font-size: 3em;
+}
+
+.btn-large{
+    margin: 0.5em;
+}
+
+.card{
+    background-color: orange;
+    text-align: center;
+    width: 45em;
+}
+
+.new-quote-button{
+    background-color: seashell;
+    border-color: yellow;
+}
